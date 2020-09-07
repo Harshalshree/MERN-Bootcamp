@@ -1,10 +1,8 @@
 var mongoose = require('mongoose');
-
 var Schema = mongoose.Schema;
-
 const {ObjectId} = mongoose.Schema;
 
-const productSchema = Schema({
+const productSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -39,6 +37,6 @@ const productSchema = Schema({
         data: Buffer,
         contentType: String
     }
-}, {timestamp : true});
+}, {timestamps : true});
 
 module.exports = mongoose.model("Product", productSchema);
