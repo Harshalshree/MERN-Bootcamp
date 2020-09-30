@@ -4,12 +4,14 @@ const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/ecommerce', {
+mongoose.connect(process.env.DATABASE, {
     useNewUrlParser: true, 
     useUnifiedTopology: true, 
     useCreateIndex: true
 }).then(() => {
     console.log("DB Connected");
+}).catch(() => {
+    console.log("DB NOT CONNECTED")
 })
 
 const port = 8000;
