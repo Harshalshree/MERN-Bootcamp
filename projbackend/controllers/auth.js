@@ -41,7 +41,7 @@ exports.signin = (req, res) => {
         })
     }
     User.findOne({email}, (err, user)=>{
-        if(err){
+        if(err || !user){
             return res.status(400).json({
                 err:"User email does not exist"
             })
@@ -54,7 +54,7 @@ exports.signin = (req, res) => {
         const token = jwt.sign({_id: user._id}, process.env.SECRET)
 
         //put token in cookie
-        res.cookie("token", token, {expires: new Date() + 9999})
+        res.cookie("token", token, {expire: new Date() + 9999})
 
         //send response to frontend
         const {_id, name, email, role} = user
