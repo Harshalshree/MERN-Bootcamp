@@ -1,5 +1,7 @@
 const User = require("../models/user")
 const { validationResult } = require('express-validator');
+var jwt = require('jsonwebtoken');
+var expressJwt = require('express-jwt');
 
 
 exports.signup = (req, res) => {
@@ -44,9 +46,22 @@ exports.signin = (req, res) => {
                 err:"User email does not exist"
             })
         }
-        if(user.authenticate()){
-
+        if(!user.authenticate(password)){
+            return res.status(401).json({
+                error: "Email or Password Incorrect",
+            })
         }
+        const token = jwt.sign({_id: user._id}, process.env.SECRET)
+
+        //put token in cookie
+        res.cookie("token", token, {expires: new Date() + 9999})
+
+        //send response to frontend
+        const {_id, name, email, role} = user
+        res.json({
+            token,
+            user: {_id, name, email, role}
+        }) 
     })
 }
 
