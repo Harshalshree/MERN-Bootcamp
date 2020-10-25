@@ -26,7 +26,6 @@ var userSchema = new Schema({
     type: String,
     trim: true,
   },
-  //TODO: Password
   encry_password:{
     type: String,
     required: true,
