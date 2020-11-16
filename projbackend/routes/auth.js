@@ -2,7 +2,7 @@ var express = require('express')
 var router = express.Router()
 
 const { check } = require('express-validator');
-const {signout, signup, signin} = require("../controllers/auth")
+const {signout, signup, signin, isSignedIn} = require("../controllers/auth")
 
 router.post("/signup", [
     check("name").isLength({min:2}).withMessage("Name should be at least 2 characters"),
@@ -17,5 +17,8 @@ router.post("/signin", [
     check("password").isLength({min:3}).withMessage("Password is required"),
 ], signin)
 
+router.get("/testroute", isSignedIn, (req, res)=>{
+    res.send("Protect Route Here")
+})
 
 module.exports = router
