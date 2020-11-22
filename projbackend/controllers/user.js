@@ -51,3 +51,33 @@ exports.getUserPurchaseList = (req, res) => {
         return res.json(order)
     })
 }
+
+exports.pushOrderInPurchaseList = (req, res, next) => {
+    let purchases = []
+    req.body.order.products.forEach(item => {
+      purchases.push({
+          _id: item.id_,
+          name: item.name,
+          description: item.description,
+          category: item.category,
+          quantity: item.quantity,
+          amount: req.body.order.amount,
+          transactionId: req.body.order.transactionId
+      })  
+    })
+    User.findOneAndUpdate(
+        {_id: req.profile._id},
+        {$push: {purchases: purchases}},
+        {new: true},
+        (err, purchase) => {
+            if(err){
+                return res.json(400).json({
+                    error: "Unable to update purchase list"
+                })
+            }
+            next()
+        }
+    )
+
+    next()
+}
