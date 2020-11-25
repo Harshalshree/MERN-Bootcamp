@@ -1,7 +1,7 @@
 const User = require("../models/user")
 const Order = require("../models/order")
 
-exports.getUserByID = (req, res, next, id) => {
+exports.getUserById = (req, res, next, id) => {
     User.findById(id).exec((err, user) => {
         if (err || !user) {
             res.status(400).json({
@@ -78,6 +78,4 @@ exports.pushOrderInPurchaseList = (req, res, next) => {
             next()
         }
     )
-
-    next()
 }
