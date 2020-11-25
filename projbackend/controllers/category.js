@@ -40,3 +40,30 @@ exports.getAllCategory= (req, res) => {
         return res.json(categories)
     })
 }
+
+exports.updateCategory = (req, res) => {
+    const category = req.category
+    category.name = req.body.name
+    category.save((err, updatedCategory) =>{
+        if(err){
+            return res.status(400).json({
+                error: "Failed to update category"
+            })
+        }
+        return res.json(updatedCategory)
+    })
+}
+
+exports.deleteCategory = (req, res) => {
+    const category = req.category
+    category.remove((err, category) => {
+        if(err){
+            return res.status(400).json({
+                error: "Failed to delete category"
+            })
+        }
+        return res.json({
+            message: `${category.name} category deleted successfully`
+        })
+    })
+}
