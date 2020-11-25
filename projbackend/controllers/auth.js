@@ -92,7 +92,7 @@ exports.isAuthenticated = (req, res, next) =>{
 
 exports.isAdmin = (req, res, next) =>{
     if(req.profile.role == 0){
-        res.status(403).json({
+        return res.status(403).json({
             error: "Access Denied (Access to Admins only)"
         })
     }
