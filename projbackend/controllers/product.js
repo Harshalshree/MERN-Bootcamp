@@ -76,3 +76,23 @@ exports.photo = (req, res, next) => {
     }
     next()
 }
+
+exports.deleteProduct = (req, res) => {
+    const product = req.product
+    product.remove((err, deletedProduct) => {
+        if(err){
+            return res.status(400).json({
+                error: "Product could not be deleted"
+            })
+        }
+        return res.json({
+            message: "Deletion successful",
+            deletedProduct
+        })
+
+    })
+}
+
+exports.updateProduct = (req, res) => {
+
+}
