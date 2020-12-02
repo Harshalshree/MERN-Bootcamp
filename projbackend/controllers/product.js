@@ -94,5 +94,39 @@ exports.deleteProduct = (req, res) => {
 }
 
 exports.updateProduct = (req, res) => {
+    let form = new formidable.IncomingForm
+    form.keepExtensions = true
+    form.parse(req, (err, fields, file) => {
+        if (err) {
+            return res.status(400).json({
+                error: "Error with Image File"
+            })
+        }
+        //destructuring the fields
+        const { name, description, price, category, stock } = fields
 
+        //updation code
+        let product = req.product
+        product = lodash.extend(product, fields)
+
+        //handling file
+        if (file.photo) {
+            if (file.photo.size > 3000000) {
+                return res.status(400).json({
+                    error: "File size limit exceeded"
+                })
+            }
+            product.photo.data = fs.readFileSync(file.photo.path)
+            product.photo.contentType = file.photo.type
+        }
+        //saving product in db
+        product.save((err, product) => {
+            if (err) {
+                return res.status(400).json({
+                    error: "Updation in db failed"
+                })
+            }
+            res.json(product)
+        })
+    })
 }
