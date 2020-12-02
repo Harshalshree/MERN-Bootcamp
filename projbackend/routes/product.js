@@ -1,7 +1,7 @@
 var express = require('express')
 var router = express.Router()
 
-const {getProductById, createProduct, getProduct, photo, updateProduct, deleteProduct, getAllProducts} = require("../controllers/product")
+const {getProductById, createProduct, getProduct, photo, updateProduct, deleteProduct, getAllProducts, getAllUniqueCategories} = require("../controllers/product")
 const {getUserById} = require("../controllers/user")
 const {isAdmin, isAuthenticated, isSignedIn} = require("../controllers/auth")
 const { update } = require('../models/user')
@@ -25,5 +25,6 @@ router.delete("product/:productId/:userId", isSignedIn, isAuthenticated, isAdmin
 
 //Listing 
 router.get("/products", getAllProducts)
+router.get("/products/categories", getAllUniqueCategories)
 
 module.exports = router
