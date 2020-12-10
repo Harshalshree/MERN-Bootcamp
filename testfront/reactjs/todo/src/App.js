@@ -28,6 +28,15 @@ class App extends React.Component {
     }
   }
 
+  deleteItem(id){
+    const list = [...this.state.list]
+    const updatedList = list.filter(item => item.id !== id)
+    this.setState({
+      list: updatedList,
+    } 
+    )
+  }
+
   render(){
     return(
       <div>
