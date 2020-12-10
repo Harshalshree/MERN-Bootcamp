@@ -21,6 +21,10 @@ class App extends React.Component {
       }
       const list = [...this.state.list]
       list.push(newItem)
+      this.setState({
+        list,
+        newItem: "",
+      })
     }
   }
 
