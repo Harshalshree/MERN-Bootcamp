@@ -1,3 +1,4 @@
 /projbackend/node_modules
 /testback/node_modules
 /projbackend/.env
+/testfront/reactjs/todo/node_modules
