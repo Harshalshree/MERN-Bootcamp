@@ -32,9 +32,15 @@ class App extends React.Component {
     const list = [...this.state.list]
     const updatedList = list.filter(item => item.id !== id)
     this.setState({
-      list: updatedList,
+      list: updatedList
     } 
     )
+  }
+
+  updateInput(input){
+    this.setState({
+      newItem: input
+    })
   }
 
   render(){
