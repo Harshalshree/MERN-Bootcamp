@@ -50,15 +50,38 @@ class App extends React.Component {
         <h1 className="app-title">ToDo App</h1>
         <div className="container">
           <br/>
-          <input type="text" className="input-text" placeholder="Write a ToDo"/>
-          <button className="add-btn">Add ToDo</button>
+          <input 
+          type="text" 
+          className="input-text" 
+          placeholder="Write a ToDo" 
+          required
+          value={this.state.newItem}
+          onChange={e => this.updateInput(e.target.value)}/>
+          <button 
+          className="add-btn"
+          onClick={()=> this.addItem(this.state.newItem)}
+          disabled={!this.state.newItem.length}
+          >Add ToDo</button>
           <div className="list">
             <ul>
-              <li>
-                <input type="checkbox"/>
-                Record youtube videos
-                <button className="btn">Delete</button>
-              </li>
+              {this.state.list.map(item =>{
+                return(
+                  <li key={item.id}>
+                    <input 
+                    type="checkbox"
+                    name="idDone"
+                    checked={item.isDone}
+                    onchange={()=>{}}
+                    />
+                {item.value}
+                <button 
+                className="btn"
+                onClick={()=>this.deleteItem(item.id)}
+                >Delete
+                </button>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
