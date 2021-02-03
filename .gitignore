@@ -2,3 +2,4 @@
 /testback/node_modules
 /projbackend/.env
 /testfront/reactjs/todo/node_modules
+/testfront/reactjs/reactrouter/node_modules
