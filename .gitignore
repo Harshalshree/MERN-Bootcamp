@@ -4,3 +4,5 @@
 /testfront/reactjs/todo/node_modules
 /testfront/reactjs/reactrouter/node_modules
 /projbackend/node_modules
+/projfrontend/node_modules
+/projbackend/src/.env
