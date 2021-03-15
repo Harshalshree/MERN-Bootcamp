@@ -7,6 +7,7 @@ export default function Home(){
     return(
         <Base title="HomePage">
             <h1 className="text-white">Hello World</h1>
+            
         </Base>
     )
 }
