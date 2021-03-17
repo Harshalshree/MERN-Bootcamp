@@ -4,8 +4,10 @@ import {Link} from 'react-router-dom'
 
 const Signup = ()=>{
     return(
-        <Base>
+        <Base title="Signup Page" description="A page for user to signup!"> 
         <h1>Signup</h1>
         </Base>
     )
 }
+
+export default Signup;

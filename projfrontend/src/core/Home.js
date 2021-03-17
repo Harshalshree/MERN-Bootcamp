@@ -5,9 +5,8 @@ import Base from './Base'
 
 export default function Home(){
     return(
-        <Base title="HomePage">
+        <Base title="HomePage" description="Welcome to the TShirt Store">
             <h1 className="text-white">Hello World</h1>
-            
         </Base>
     )
 }
