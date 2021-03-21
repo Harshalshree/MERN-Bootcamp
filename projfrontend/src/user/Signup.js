@@ -6,6 +6,20 @@ import {Link} from 'react-router-dom'
 
 const Signup = ()=>{
 
+    const [values, setValues] = useState({
+        name: "",
+        email: "",
+        password: "",
+        error: "",
+        success: false
+    })
+
+    const {name, email, password, error, success} = values
+
+    const handleChange = name => event => {
+        setValues({...values, error:false, [name]: event.target.value})
+    }
+
     const signUpForm = () => {
         return(
             <div className="row">
@@ -29,7 +43,6 @@ const Signup = ()=>{
             </div>
         )
     }
-
 
     return(
         <Base title="Signup Page" description="A page for user to signup!"> 
