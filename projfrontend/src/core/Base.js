@@ -4,7 +4,7 @@ import Navbar from './navbar'
 export default function Base({
     title = "My Title",
     description = "My Description",
-    className = "bg-dark text-white p-4",
+    className = "text-white p-4",
     children
 }){
     return(
@@ -13,7 +13,7 @@ export default function Base({
                 
             </Navbar>
             <div className="container-fluid">
-                <div className="jumbotron bg-dark text-white text-center">
+                <div className="jumbotron text-white text-center">
                     <h2 className="display-4">{title}</h2>
                     <p className="lead">{description}</p>
                 </div>
