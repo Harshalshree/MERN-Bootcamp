@@ -37,6 +37,24 @@ const Signin = () => {
         
     }
 
+    const performRedirect = () => {
+        //TODO: Perform redirect here
+        if(didRedirect){
+            if(user && user.role == 1){
+                return(
+                    <p>Redirect to admin dashboard</p>
+                )
+            }else{
+                return(
+                    <p>Redirect to user dashboard</p>
+                )
+            }
+        }
+        if(isAutheniticated()){
+            return <Redirect to="/"/>
+        }
+    }
+
     const errorMessage = ()=>{
         return(
             <div className="row">
@@ -49,13 +67,12 @@ const Signin = () => {
         )
     }
 
-    const successMessage = ()=>{
+    const loadingMessage = ()=>{
         return(
             <div className="row">
                 <div className="col-md-6 offset-sm-3 text-left">
-                    <div className="alert alert-success" style={{display: success ? "" : "none"}}>
-                        New Account Created Successfully. Please {" "}
-                        <Link to="/signin">Login Here.</Link>
+                    <div className="alert alert-info" style={{display: loading ? "" : "none"}}>
+                        <h2>Loading...</h2>
                     </div>
                 </div>
             </div>
@@ -84,7 +101,11 @@ const Signin = () => {
 
     return (
         <Base title="Signin Page" description="A page for user to signin!">
+            {loadingMessage()}
+            {errorMessage()}
             {signInForm()}
+            {performRedirect()}
+            <p className="text-white text-center">{JSON.stringify(values)}</p>
         </Base>
     )
 }
