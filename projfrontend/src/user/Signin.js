@@ -26,7 +26,7 @@ const Signin = () => {
         signIn({email, password})
         .then(data => {
             if(data.error){
-                setValues({...values, error: data.error, loading: true,})
+                setValues({...values, error: data.error, loading: false,})
             }else{
                 authenticate(data, ()=>{
                     setValues(({...values, didRedirect: true}))

@@ -26,12 +26,17 @@ function Navbar({history}){
                 <li className="nav-item">
                     <Link style={currentTab(history, "/admin/dashboard")} className="nav-link" to="/admin/dashboard">A.Dashboard</Link>
                 </li>
-                <li className="nav-item">
+                {!isAutheniticated() && (
+                    <li className="nav-item">
                     <Link style={currentTab(history, "/signup")} className="nav-link" to="/signup">Signup</Link>
                 </li>
-                <li className="nav-item">
+                )}
+                {!isAutheniticated() && (
+                    <li className="nav-item">
                     <Link style={currentTab(history, "/signin")} className="nav-link" to="/signin">Signin</Link>
                 </li>
+                )}
+                
                 {isAutheniticated() && (
                     <li className="nav-item">
                     <span className="nav-link text-warning" 
