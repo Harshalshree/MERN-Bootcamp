@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link, withRouter} from 'react-router-dom'
-import {signOut, isAutheniticated} from '../auth/helper/index'
+import {signOut, isAuthenticated} from '../auth/helper/index'
 
 const currentTab = (history, path) => {
     if(history.location.pathname === path){
@@ -18,7 +18,7 @@ function Navbar({history}){
                     <Link style={currentTab(history, "/")} className="nav-link" to="/">Home</Link>
                 </li>
                 <li className="nav-item">
-                    <Link style={currentTab(history, "/user/dashboard")} className="nav-link" to="/user/dashboard">Dashboard</Link>
+                    <Link style={currentTab(history, "/user/dashboard")} className="nav-link" to="/user/dashboard">U.Dashboard</Link>
                 </li>
                 <li className="nav-item">
                     <Link style={currentTab(history, "/cart")} className="nav-link" to="/cart">Cart</Link>
@@ -26,18 +26,18 @@ function Navbar({history}){
                 <li className="nav-item">
                     <Link style={currentTab(history, "/admin/dashboard")} className="nav-link" to="/admin/dashboard">A.Dashboard</Link>
                 </li>
-                {!isAutheniticated() && (
+                {!isAuthenticated() && (
                     <li className="nav-item">
                     <Link style={currentTab(history, "/signup")} className="nav-link" to="/signup">Signup</Link>
                 </li>
                 )}
-                {!isAutheniticated() && (
+                {!isAuthenticated() && (
                     <li className="nav-item">
                     <Link style={currentTab(history, "/signin")} className="nav-link" to="/signin">Signin</Link>
                 </li>
                 )}
                 
-                {isAutheniticated() && (
+                {isAuthenticated() && (
                     <li className="nav-item">
                     <span className="nav-link text-warning" 
                     onClick={()=>{
