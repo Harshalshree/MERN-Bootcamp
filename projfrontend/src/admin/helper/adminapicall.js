@@ -17,8 +17,19 @@ export const createCategory = (userId, token, category) => {
     .catch(err => console.log(err))
 }
 
-//product calls
+export const getAllCategories = () => {
+    return fetch(`${API}/categories`,{
+        method:"GET"
+    })
+    .then(res =>{
+        return res.json()
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
 
+//product calls
 export const createProduct = (userId, token, product) => {
     return fetch(`${API}/product/create/${userId}`, {
         method:"POST",
@@ -29,6 +40,18 @@ export const createProduct = (userId, token, product) => {
         body: product
     })
     .then(res => {
+        return res.json()
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
+export const getAllProducts = () => {
+    return fetch(`${API}/products`,{
+        method:"GET"
+    })
+    .then(res =>{
         return res.json()
     })
     .catch(err => {
