@@ -58,3 +58,15 @@ export const getAllProducts = () => {
         console.log(err);
     })
 }
+
+export const getProduct = (productId) => {
+    return fetch(`${API}/product/${productId}`,{
+        method:"GET"
+    })
+    .then(res =>{
+        return res.json()
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
