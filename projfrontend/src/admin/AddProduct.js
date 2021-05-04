@@ -1,10 +1,16 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
+import { isAuthenticated } from '../auth/helper'
 import Base from '../core/Base'
 import { getAllCategories } from './helper/adminapicall'
 
 
+
 const AddProduct = () => {
+
+    const {user, token} = isAuthenticated()
+
+
 
     const [values, setValues] = useState({
         name:"",
@@ -25,7 +31,7 @@ const AddProduct = () => {
 
     const preload = () => {
         getAllCategories().then(data => {
-            console.log(data)
+            console.log(data) 
             if(data.error){
                 setValues({...values, error: data.error})
             }
@@ -44,7 +50,9 @@ const AddProduct = () => {
     }
 
     const handleChange = name => event => {
-
+      const value = name==="photo" ? event.target.file[0] : event.target.value
+      formData.set(name,value);
+      setValues({...values, [name]: value})
     }
 
     const createProductForm = () => (
@@ -95,8 +103,11 @@ const AddProduct = () => {
               placeholder="Category"
             >
               <option>Select</option>
-              <option value="a">a</option>
-              <option value="b">b</option>
+              {categories &&
+              categories.map((cate, index)=> {
+                <option key={index} value={cate._id}>{cate.name}</option>
+              })
+              }
             </select>
           </div>
           <div className="form-group p-1">
