@@ -20,7 +20,7 @@ router.get("/product/photo/:productId", photo)
 router.put("/product/:productId/:userId", isSignedIn, isAuthenticated, isAdmin, updateProduct)
 
 //Delete
-router.delete("product/:productId/:userId", isSignedIn, isAuthenticated, isAdmin, deleteProduct)
+router.delete("/product/:productId/:userId", isSignedIn, isAuthenticated, isAdmin, deleteProduct)
 
 
 //Listing 

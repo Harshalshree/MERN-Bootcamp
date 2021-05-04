@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { isAuthenticated } from '../auth/helper'
 import Base from '../core/Base'
-import { getAllProducts } from './helper/adminapicall'
+import { deleteProduct, getAllProducts } from './helper/adminapicall'
 
 const ManageProducts = () => {
 
@@ -24,6 +24,18 @@ const ManageProducts = () => {
     useEffect(()=>{
         preload()
     }, [])
+
+    const deleteThisProduct = productId => {
+        deleteProduct(productId, user._id, token).then((data)=>{
+            // console.log(data)
+            if(data.error){
+                console.log(data.error)
+            }
+            else{
+                preload()
+            }
+        })
+    }
 
     return(
     <Base title="Welcome admin" description="Manage products here">
@@ -48,7 +60,9 @@ const ManageProducts = () => {
                     </Link>
                     </div>
                     <div className="col-4">
-                    <button onClick={() => {}} className="btn btn-danger">
+                    <button onClick={() => {
+                        deleteThisProduct(product._id)
+                    }} className="btn btn-danger">
                         Delete
                     </button>
                     </div>

@@ -99,7 +99,5 @@ export const deleteProduct = (productId, userId, token) => {
     .then(res => {
         return res.json()
     })
-    .catch(err => {
-        console.log(err);
-    })
+    .catch(err => console.log(err))
 }
