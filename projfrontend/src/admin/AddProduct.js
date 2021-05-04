@@ -24,16 +24,20 @@ const AddProduct = () => {
     const {name, description, price, stock, categories, category, loading, error, createdProduct, getaRedirect, formData} = values
 
     const preload = () => {
-        getAllCategories.then(data => {
+        getAllCategories().then(data => {
+            console.log(data)
             if(data.error){
                 setValues({...values, error: data.error})
             }
             else{
-                setValues({...values, categories: data})
-                console.log(categories)
+                setValues({...values, categories: data, formData: new FormData()})
             }
         })
     }
+    
+    useEffect(()=>{
+      preload()
+    }, [])
 
     const onSubmit = () => {
 
