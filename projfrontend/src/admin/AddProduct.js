@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { isAuthenticated } from '../auth/helper'
 import Base from '../core/Base'
-import { getAllCategories } from './helper/adminapicall'
+import { createProduct, getAllCategories } from './helper/adminapicall'
 
 
 
@@ -45,14 +45,35 @@ const AddProduct = () => {
       preload()
     }, [])
 
-    const onSubmit = () => {
-
+    const onSubmit = (event) => {
+      event.preventDefault()
+      setValues({...values, error:"", loading:true})
+      createProduct(user._id, token, formData).then(data=>{
+        if(data.error){
+          setValues({...values, error: data.error})
+        }
+        else{
+          setValues({...values,
+          name:"",
+          description:"",
+          price:"",
+          photo:"",
+          stock:"",
+          loading: false,
+          createdProduct: data.name
+          })
+        }
+      })
     }
 
     const handleChange = name => event => {
       const value = name==="photo" ? event.target.file[0] : event.target.value
       formData.set(name,value);
       setValues({...values, [name]: value})
+    }
+
+    const successMessage = () => {
+      
     }
 
     const createProductForm = () => (
@@ -104,8 +125,8 @@ const AddProduct = () => {
             >
               <option>Select</option>
               {categories &&
-              categories.map((cate, index)=> {
-                <option key={index} value={cate._id}>{cate.name}</option>
+              categories.map((cate, index) => {
+                return(<option key={index} value={cate._id}>{cate.name}</option>)
               })
               }
             </select>
