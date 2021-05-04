@@ -10,7 +10,7 @@ import PrivateRoute from './auth/helper/PrivateRoutes'
 import AddCategory from './admin/AddCategory'
 import ManageCategories from './admin/ManageCategories'
 import AddProduct from './admin/AddProduct'
-import manageProducts from './admin/ManageProducts'
+import ManageProducts from './admin/ManageProducts'
 
 
 export default function Routes(){
