@@ -73,7 +73,13 @@ const AddProduct = () => {
     }
 
     const successMessage = () => {
-      
+      return(
+        <div className="alert alert-success mt-3"
+        style={{display: createdProduct ? "" : "none"}}
+        >
+          <h4>{createdProduct} created successfully</h4>
+        </div>
+      )
     }
 
     const createProductForm = () => (
@@ -133,10 +139,10 @@ const AddProduct = () => {
           </div>
           <div className="form-group p-1">
             <input
-              onChange={handleChange("quantity")}
+              onChange={handleChange("stock")}
               type="number"
               className="form-control"
-              placeholder="Quantity"
+              placeholder="Stock"
               value={stock}
             />
           </div>
@@ -156,6 +162,7 @@ const AddProduct = () => {
             <Link className="btn btn-md btn-dark mb-3" to="/admin/dashboard">Admin Home</Link>
             <div className="row bg-dark text-white rounded">
                 <div className="col-md-8 offset-md-2 p-2">
+                    {successMessage()}
                     {createProductForm()}
                 </div>
             </div>
