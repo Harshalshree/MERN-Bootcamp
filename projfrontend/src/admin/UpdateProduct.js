@@ -97,7 +97,7 @@ const UpdateProduct = ({match}) => {
         <div className="alert alert-success mt-3"
         style={{display: createdProduct ? "" : "none"}}
         >
-          <h4>{createdProduct} created successfully</h4>
+          <h4>{createdProduct} updated successfully</h4>
         </div>
       )
     }
