@@ -69,7 +69,7 @@ const Card = ({
             <p className="btn btn-success rounded  btn-sm px-4">$ {cardPrice}</p>
             <div className="row">
             <div className="col-12">
-                {showAddToCart(addInCart)}
+                {showAddToCart(addToCart)}
             </div>
             <div className="col-12">
                 {showRemoveFromCart(removeFromCart)}
