@@ -9,6 +9,10 @@ const Card = ({
     removeFromCart = false,
 }) => {
 
+    const cardTitle = product ? product.name : "A photo from pexels"
+    const cardDescription = product ? product.description : "-"
+    const cardPrice = product ? product.price : "0"
+
     const showAddToCart = (addToCart) => {
         if(addToCart){
             return(
@@ -35,13 +39,13 @@ const Card = ({
 
     return (
         <div className="card text-white bg-dark border border-info ">
-        <div className="card-header lead">A photo from pexels</div>
+        <div className="card-header lead">{cardTitle}</div>
         <div className="card-body">
             <ImageHelper product={product}/>
             <p className="lead bg-success font-weight-normal text-wrap">
-            this photo looks great
+            {cardDescription}
             </p>
-            <p className="btn btn-success rounded  btn-sm px-4">$ 5</p>
+            <p className="btn btn-success rounded  btn-sm px-4">$ {cardPrice}</p>
             <div className="row">
             <div className="col-12">
                 {showAddToCart(addToCart)}
